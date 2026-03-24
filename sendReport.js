@@ -1,42 +1,30 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
 async function sendEmail() {
-  try {
-    let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'naveen.s@elblearning.com',
-        pass: 'vmuuqltbcvdwgbpf'
-      }
-    });
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "naveen.s@elblearning.com",
+      pass: "vmuuqltbcvdwgbpf"
+    }
+  });
 
-    let info = await transporter.sendMail({
-      from: 'naveen.s@elblearning.com',
-      to: 'naveen.s@elblearning.com',   // 👉 change this
-      subject: 'Playwright Test Report',
+  const reportLink = "https://Naveen-1a.github.io/playwright-report/ortoni-report/";
 
-      text: `
-Test execution completed successfully.
+  let mailOptions = {
+    from: "naveen.s@elblearning.com",
+    to: "naveen.s@elblearning.com",
+    subject: "Playwright Ortoni Report",
+    html: `
+      <h3>Test Execution Completed</h3>
+      <p>Please find the test report below:</p>
+      <a href="${reportLink}" target="_blank">View Ortoni Report</a>
+      <p>${reportLink}</p>
+    `
+  };
 
-📊 Ortoni Report:
-Open from your system:
-D:\\playwright-testing\\ortoni-report\\index.html
-
-📁 Screenshots & Videos:
-D:\\playwright-testing\\test-results
-
-(Note: Attachments are not included due to email security restrictions)
-
-Thanks,
-Automation
-`
-    });
-
-    console.log('✅ Email sent successfully:', info.response);
-
-  } catch (error) {
-    console.error('❌ Error sending email:', error);
-  }
+  await transporter.sendMail(mailOptions);
+  console.log("Email sent with GitHub report link!");
 }
 
 sendEmail();
