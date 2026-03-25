@@ -23,8 +23,10 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter:  [
-  ['html'],           // keep existing HTML report (optional but recommended)
-  ['ortoni-report']   // add Ortoni report
+  ['list'], // optional
+  ['html'], // keep this
+  ['ortoni-report'], // keep this
+  ['json', { outputFile: 'test-results/results.json' }]
 ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -32,8 +34,8 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    screenshot: 'on',
-    video: 'on',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
     trace: 'on',
   },
 

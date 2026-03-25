@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {"test": "npx playwright test",
-  "test:full": "npx playwright test --reporter=html",
+  "test:full": "npx playwright test && node pushReport.js && node sendReport.js",
   "report": "npx playwright show-report",
   "test:report": "npx playwright test && npx playwright show-report"},
   "keywords": [],
