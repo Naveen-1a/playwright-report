@@ -39,7 +39,7 @@ async function sendEmail() {
     }
   });
 
-  const reportLink = "https://Naveen-1a.github.io/playwright-report/ortoni-report/";
+  const reportLink = "https://Naveen-1a.github.io/playwright-report/ortoni-report/ortoni-report.html";
 
   // 🔹 Failed tests HTML
   const failedSection = failed > 0
